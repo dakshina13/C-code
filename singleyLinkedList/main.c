@@ -58,36 +58,41 @@ void insertAtPosition(){
         count++;
         temp=temp->next;
     }
-    if(p>count-1){
-        if(count==0)
-            printf("List is empty");
-        else
+    if(p>count){
             printf("Invalid position\n");
         return;
     }
     printf("Enter the element to be inserted:\n");
     scanf("%d",&ele);
     temp=head;
+    newNode=(struct Node *)malloc(sizeof(struct Node));
     if(p==0){
-        newNode=(struct Node *)malloc(sizeof(struct Node));
         newNode->data=ele;
         newNode->next=head;
         head=newNode;
         printf("Element %d is successfully inserted at position 0\n",ele);
-    }else{
-        while(i<count){
+    }
+    else if(p==count){
+        while(temp->next!=NULL){
+            temp=temp->next;
+        }
+        newNode->data=ele;
+        newNode->next=NULL;
+        temp->next=newNode;
+        printf("Element %d is successfully inserted at position %d\n",ele,p);
+    }
+    else{
+        for(i=0;i<p;i++){
             if(i==p-1){
                 before=temp;
                 after=temp->next;
                 break;
             }
             temp=temp->next;
-            i++;
         }
-        newNode=(struct Node *)malloc(sizeof(struct Node));
         newNode->data=ele;
-        before->next=newNode;
         newNode->next=after;
+        before->next=newNode;
         printf("Element %d is successfully inserted at position %d\n",ele,p);
     }
 }

@@ -147,10 +147,7 @@ void delete(){
         printf("Element is not found\n");
         return;
     }
-    if(found->next==NULL)
-        temp->next=NULL;
-    else
-        temp->next=found->next;
+    temp->next=found->next;
     free(found);
     printf("Element %d is deleted \n",ele);
 }

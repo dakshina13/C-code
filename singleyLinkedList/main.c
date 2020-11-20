@@ -14,7 +14,6 @@ int main(){
     int c;
     do{
         c=displayMenu();
-        
         switch (c)
         {
         case 1:
@@ -77,11 +76,11 @@ void insertAtPosition(){
         printf("Element %d is successfully inserted at position 0\n",ele);
     }else{
         while(i<count){
-        if(i==p-1){
-            before=temp;
-            after=temp->next;
-            break;
-        }
+            if(i==p-1){
+                before=temp;
+                after=temp->next;
+                break;
+            }
             temp=temp->next;
             i++;
         }
@@ -137,7 +136,7 @@ void delete(){
         head=head->next;
         return;
     }
-    while(temp!=NULL){
+    while(temp->next!=NULL){
         if(temp->next->data==ele){
             found=temp->next;
             break;
@@ -150,8 +149,8 @@ void delete(){
     }
     if(found->next==NULL)
         temp->next=NULL;
-    else{
+    else
         temp->next=found->next;
-    }  
+    free(found);
     printf("Element %d is deleted \n",ele);
 }

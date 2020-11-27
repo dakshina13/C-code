@@ -10,6 +10,7 @@ void display();
 void delete();
 int displayMenu();
 void insertAtPosition();
+void reverse();
 int main(){
     int c;
     do{
@@ -28,6 +29,9 @@ int main(){
         case 4:
             insertAtPosition();
             break;
+        case 5:
+            reverse();
+            break;
         case 999:
             break;
         default:
@@ -43,6 +47,7 @@ int displayMenu(){
     printf("2.Display list\n");
     printf("3.Delete from list\n");
     printf("4.Insert at specific position\n");
+    printf("5.Reverse list\n");
     printf("999.Exit\n");
     printf("Enter your choice\n");
     scanf("%d",&c);
@@ -155,4 +160,18 @@ void delete(){
     temp->next=found->next;
     free(found);
     printf("Element %d is deleted \n",ele);
+}
+void reverse(){
+    struct Node *before=NULL,*after,*current=head;
+    if(head==NULL){
+        printf("List is empty.Cant Reverse!\n");
+        return;
+    }
+    while(current!=NULL){
+        after=current->next;
+        current->next=before;
+        before=current;
+        current=after;
+    }
+    head=before;
 }

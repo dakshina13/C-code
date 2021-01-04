@@ -90,13 +90,13 @@ void delete(){
     printf("Enter the element to be deleted\n");
     scanf("%d",&ele);
     struct Node *temp=head,*found=NULL;
-    if(temp->data==ele){
+    if(temp->data==ele){     //If first node then we have to change the head pointer
         printf("The element %d has been deleted\n",temp->data);
         head=temp->next;
         head->previous=NULL;
         return;
     }
-    while(temp->next!=NULL){
+    while(temp!=NULL){
         if(temp->data==ele){
             found=temp;
             break;
@@ -110,7 +110,8 @@ void delete(){
     printf("The element %d has been deleted\n",found->data);
     temp=found->previous;
     temp->next=found->next;
-    found->next->previous=temp;
+    if(found->next!=NULL)    //If last element then there will not be next node
+        found->next->previous=temp;
     free(found);
 }
 void insertAtPosition(){

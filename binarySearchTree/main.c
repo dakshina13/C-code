@@ -10,9 +10,11 @@ void insert(Node *root,Node *temp);
 void preorder(Node *root);
 void postorder(Node *root);
 void inorder(Node *root);
+Node* deleteNode(Node *root,int ele);
+Node* minValueNode(Node* root);
 Node* create();
 int main(){
-    int c;
+    int c,ele;
     Node *root=NULL;
     do{
         c=displayMenu();
@@ -50,6 +52,11 @@ int main(){
                 printf("\n");
             }   
             break;
+        case 5:
+            printf("Enter the element to be deleted\n");
+            scanf("%d",&ele);
+            root=deleteNode(root,ele);
+            break;
         case 999:
             break;
         default:
@@ -65,9 +72,40 @@ int displayMenu(){
     printf("2.Pre-order Traversal\n");
     printf("3.Post-order Traversal\n");
     printf("4.In-order Traversal\n");
+    printf("5.Delete element\n");
     printf("999.Exit\n");
     scanf("%d",&c);
     return c;
+}
+Node* minValueNode(Node* root){
+    Node* current=root;
+    while(current&&current->left!=NULL)
+        current=current->left;
+    return current;
+}
+Node* deleteNode(Node *root,int ele){
+    Node* temp;
+    if(root==NULL)
+        return root;
+    if(ele<root->data)
+        root->left=deleteNode(root->left,ele);
+    else if(ele>root->data)
+        root->right=deleteNode(root->right,ele);
+    else{
+        if(root->left==NULL){
+            temp=root->right;
+            free(root);
+            return temp;
+        }else if(root->right==NULL){
+            temp=root->left;
+            free(root);
+            return temp;
+        }
+        temp=minValueNode(root->right);
+        root->data=temp->data;
+        root->right=deleteNode(root->right,temp->data);
+    }
+    return root;
 }
 Node* create(){
     Node *newNode=(Node *)malloc(sizeof(Node));

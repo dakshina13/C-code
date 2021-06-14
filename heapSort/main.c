@@ -33,7 +33,7 @@ void heapSort(int hp[], int n)
     // {
     //     printf("%d\t",hp[j]);
     // }
-    for (i=n-1;i>=0; i--)  
+    for (i=n-1;i>0; i--)  
     {  
         temp=hp[0];  
         hp[0]=hp[i];   

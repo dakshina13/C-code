@@ -29,6 +29,7 @@ void checkCycle(){
         if(cyclic==1)
             break;
         //printf("Printing visited node from start node %d\n",startNode);
+        //RESETING TO START THE PROCESS AGAIN
         for(j=0;j<n;j++){
             //printf("%d\t",visited[j]);
             visited[j]=0;

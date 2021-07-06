@@ -4,9 +4,9 @@ int max(int a, int b)
     return (a > b) ? a : b;
 }
 
-int knapSack(int W, int wt[], int val[], int n)
+void knapSack(int W, int wt[], int val[], int n)
 {
-    int i, w;
+    int i, w, res, count = 0;
     int K[n + 1][W + 1];
 
     for (i = 0; i <= n; i++)
@@ -23,7 +23,8 @@ int knapSack(int W, int wt[], int val[], int n)
         }
     }
 
-    return K[n][W];
+    res = K[n][W];
+    printf("\n\nMaximum Value that can be obtained is : %d", res);
 }
 
 int main()
@@ -45,7 +46,6 @@ int main()
     }
     printf("enter the weight key\n");
     scanf("%d", &wtkey);
-
-    printf("%d", knapSack(wtkey, wt, val, valsize));
+    knapSack(wtkey, wt, val, valsize);
     return 0;
 }

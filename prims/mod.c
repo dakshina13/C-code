@@ -4,7 +4,7 @@ int visited[10] = {0},
     min, mincost = 0, graph[10][10];
 void main()
 {
-
+    int node, start;
     printf("Enter the number of nodes:");
     scanf("%d", &n);
     printf("Enter the adjacency matrix:\n");
@@ -23,25 +23,37 @@ void main()
         printf("\n");
     }
     visited[1] = 1;
-    while (ns < n)
+    printf("Enter the node to be excluded\n");
+    scanf("%d", &node);
+    visited[node] = 1;
+    if (node == 1)
     {
-        for (i = 1, min = 999; i <= n; i++)
+        visited[2]=1;
+        start = 2;
+    }
+    else
+        start = 1;
+    while (ns < n-1)
+    {
+        for (i = start, min = 999; i <= n; i++)
         {
-            for (j = 1; j <= n; j++)
+            for (j = start; j <= n; j++)
             {
                 if (graph[i][j] < min)
+                {
                     if (visited[i] != 0)
                     {
                         min = graph[i][j];
                         u = i;
                         v = j;
                     }
+                }
             }
         }
         if (visited[v] == 0)
         {
             ns++;
-            printf("Edge (%d %d) cost:%d\n", i, u, v, min);
+            printf("Edge (%d %d) cost:%d\n", u, v, min);
             mincost += min;
             visited[v] = 1;
         }

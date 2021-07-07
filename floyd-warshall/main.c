@@ -18,17 +18,13 @@ int main(){
     scanf("%d",&n);
     int graph[n][n];
     printf("Enter the graph\n");
-    for(i=0;i<n;i++){
-        for(j=0;j<n;j++){
-            printf("a[%d][%d]\n",i,j);
-            printf("1.Number \n2.Infinity?\n");
-            scanf("%d",&c);
-            if(c==2)
-                graph[i][j]=INF;
-            else if(c==1)
-                scanf("%d",&graph[i][j]);
+    for (i = 0; i < n; i++)
+        for (j = 0; j < n; j++)
+        {
+            scanf("%d", &graph[i][j]);
+            if (graph[i][j] == 0 && i!=j)
+                graph[i][j] = INF;
         }
-    }
     printf ("The following matrix is the input matrix \n");
     for (i = 0; i < n; i++)
     {

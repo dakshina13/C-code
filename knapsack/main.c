@@ -29,7 +29,7 @@ void knapSack(int W, int wt[], int val[], int n)
 
 int main()
 {
-    int valsize, i, wtsize, wtkey;
+    int valsize, i, wtsize, wtkey,j;
     printf("enter the size of value and weight arrays\n");
     scanf("%d %d", &valsize, &wtsize);
     int val[valsize];
@@ -47,5 +47,6 @@ int main()
     printf("enter the weight key\n");
     scanf("%d", &wtkey);
     knapSack(wtkey, wt, val, valsize);
+    
     return 0;
 }
